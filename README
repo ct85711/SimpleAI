@@ -1,0 +1,6 @@
+This project is to learn more about artificial intelligence and them learning.  This project for now, is developed in C# for simplicity wise.  I am not intending this to be a complete project, and I plan for the project to grow and evolve as I think of new things to try out and test.
+
+The way I am intending this program to work like, is more like a minesweeper type game with no user interaction.
+
+Initially, I am going to start with a generic algorithm for moving the object around, then growing into using an neural network.
+Afterwards, I am considering on expanding this, in adding another simple AI, that will act like an enemy to avoid while moving around the screen.  A possible future course I may go into, is seeing how a hybrid AI works, more of an AI using multiple different types and choosing the best one between the various child AI's.
