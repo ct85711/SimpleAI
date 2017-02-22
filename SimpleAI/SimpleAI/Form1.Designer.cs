@@ -30,13 +30,14 @@
         {
             this.Box = new System.Windows.Forms.PictureBox();
             this.btnStart = new System.Windows.Forms.Button();
+            this.btnStop = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Box)).BeginInit();
             this.SuspendLayout();
             // 
             // Box
             // 
             this.Box.BackColor = System.Drawing.Color.Red;
-            this.Box.Location = new System.Drawing.Point(499, 60);
+            this.Box.Location = new System.Drawing.Point(647, 59);
             this.Box.Name = "Box";
             this.Box.Size = new System.Drawing.Size(20, 20);
             this.Box.TabIndex = 0;
@@ -52,11 +53,23 @@
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
+            // btnStop
+            // 
+            this.btnStop.Enabled = false;
+            this.btnStop.Location = new System.Drawing.Point(682, 107);
+            this.btnStop.Name = "btnStop";
+            this.btnStop.Size = new System.Drawing.Size(124, 58);
+            this.btnStop.TabIndex = 2;
+            this.btnStop.Text = "Stop";
+            this.btnStop.UseVisualStyleBackColor = true;
+            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(830, 441);
+            this.Controls.Add(this.btnStop);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.Box);
             this.Name = "Form1";
@@ -71,6 +84,7 @@
 
         private System.Windows.Forms.PictureBox Box;
         private System.Windows.Forms.Button btnStart;
+        private System.Windows.Forms.Button btnStop;
     }
 }
 
