@@ -19,8 +19,16 @@ namespace SimpleAI
         private int deltaY = 1;
         const int WinWidth = 640;
         const int WinHeight = 410;
-        const int boundary = 10;
-        Boolean continueLoop = true;
+        const int boundary = 15;
+        public Point location;
+        private Thread movement;
+
+        public delegate void SetImgPos();
+        public SetImgPos myDelegate;
+        public void SetPosition()
+        {
+            Box.Location = location;
+        }
 
         public Form1()
         {
@@ -29,19 +37,19 @@ namespace SimpleAI
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            myDelegate = new SetImgPos(SetPosition);
         }
 
         private void Movement()
         {
             //make sure we don't go past the screen
-            if ((xPos + (15 + Box.Width)) > WinWidth)
+            if ((xPos + (boundary + Box.Width)) > WinWidth)
                 deltaX = -1;
-            else if ((xPos - (15 + Box.Width)) < 0)
+            else if ((xPos - (boundary + Box.Width)) < 0)
                 deltaX = 1;
-            if ((yPos + (15)) > WinHeight)
+            if ((yPos + (boundary)) > WinHeight)
                 deltaY = -1;
-            else if ((yPos - (15)) < 0)
+            else if ((yPos - (boundary)) < 0)
                 deltaY = 1;
 
             //update the position
@@ -52,23 +60,36 @@ namespace SimpleAI
         private void btnStart_Click(object sender, EventArgs e)
         {
             btnStop.Enabled = true;
+
             Box.Location = new Point(xPos, yPos);
-            while (continueLoop)
+            movement = new Thread(StartMoving);
+           movement.Start();
+            
+            //Box.Visible = false;
+            this.Refresh();
+
+        }
+
+        
+        private void StartMoving()
+        {
+
+           while (true)
             {
                 Movement();
-
-                Box.Location = new Point(xPos, yPos);
+                location = new Point(xPos, yPos);
+                Box.Invoke(myDelegate);
                 //Console.WriteLine("X: " + xPos + ", Y: " + yPos + ", DeltaX: " + deltaX + ", DeltaY: " + deltaY);
 
                 Thread.Sleep(10);
 
             }
         }
-
         private void btnStop_Click(object sender, EventArgs e)
         {
-            continueLoop = false;
+            movement.Abort();
             Console.WriteLine("Stop loop!");
+            //Box.Visible = true;
         }
     }
 }
