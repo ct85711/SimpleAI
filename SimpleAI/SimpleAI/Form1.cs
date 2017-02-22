@@ -15,16 +15,22 @@ namespace SimpleAI
     {
         private int xPos = 20;
         private int yPos = 20;
+
         private int deltaX = 1;
         private int deltaY = 1;
+
         const int WinWidth = 640;
         const int WinHeight = 410;
         const int boundary = 15;
-        public Point location;
+
         private Thread movement;
 
+        //define the delegate that we are using
         public delegate void SetImgPos();
         public SetImgPos myDelegate;
+        public Point location;
+
+        //update the position
         public void SetPosition()
         {
             Box.Location = location;
@@ -37,6 +43,7 @@ namespace SimpleAI
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //define the Delegate so that we can update the PictureBox's position
             myDelegate = new SetImgPos(SetPosition);
         }
 
@@ -57,24 +64,24 @@ namespace SimpleAI
             yPos += deltaY;
         }
 
+        //this starts the program, by creating a new thread that will bouncing the box around
         private void btnStart_Click(object sender, EventArgs e)
         {
             btnStop.Enabled = true;
 
+            //Start the thread controlling the PictureBox movement
             Box.Location = new Point(xPos, yPos);
             movement = new Thread(StartMoving);
-           movement.Start();
-            
-            //Box.Visible = false;
-            this.Refresh();
+            movement.Start();
 
+            this.Refresh();
         }
 
-        
+        //This method is where we cause the PictureBox to bounce around on the screen
         private void StartMoving()
         {
 
-           while (true)
+            while (true)
             {
                 Movement();
                 location = new Point(xPos, yPos);
@@ -85,11 +92,11 @@ namespace SimpleAI
 
             }
         }
+
+        //This method, we stop the movement thread from going around
         private void btnStop_Click(object sender, EventArgs e)
         {
             movement.Abort();
-            Console.WriteLine("Stop loop!");
-            //Box.Visible = true;
         }
     }
 }
