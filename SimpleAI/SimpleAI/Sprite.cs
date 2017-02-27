@@ -16,59 +16,48 @@ namespace SimpleAI
 
         private int deltaX = 1;
         private int deltaY = 1;
-        private PictureBox sprite;
 
         private int WinHeight;
         private int WinWidth;
-        private int Boundary;
+        private int theBoundary;
 
-        public Sprite(Form theForm, int height, int width, int boundary, Color theColor)
+        public Sprite(int height, int width, int boundary)
         {
             WinHeight = height;
             WinWidth = width;
-            Boundary = boundary;
-            Random rnd = new Random();
-
-            sprite = new PictureBox();
-            sprite.Width = 20;
-            sprite.Height = 20;
-            sprite.BackColor = theColor;
-            theForm.Controls.Add(sprite);
-            sprite.Visible = true;
-            sprite.Location = new Point(rnd.Next(50, 300), rnd.Next(50, 300));
+            theBoundary = boundary;
+            
         }
 
-       /* private void Movement()
+       private void Movement(PictureBox theSprite)
         {
             //make sure we don't go past the screen
-            if ((xPos + (boundary + Box.Width)) > WinWidth)
+            if ((xPos + (theBoundary + theSprite.Width)) > WinWidth)
                 deltaX = -1;
-            else if ((xPos - (boundary + Box.Width)) < 0)
+            else if ((xPos - (theBoundary + theSprite.Width)) < 0)
                 deltaX = 1;
-            if ((yPos + (boundary)) > WinHeight)
+            if ((yPos + (theBoundary)) > WinHeight)
                 deltaY = -1;
-            else if ((yPos - (boundary)) < 0)
+            else if ((yPos - (theBoundary)) < 0)
                 deltaY = 1;
 
             //update the position
             xPos += deltaX;
             yPos += deltaY;
         }
-
-        private void StartMoving()
+        
+        public void StartMoving(object aSprite)
         {
-
+            PictureBox theSprite = (PictureBox)aSprite;
             while (true)
             {
-                Movement();
-                location = new Point(xPos, yPos);
-                Box.Invoke(myDelegate);
-                //Console.WriteLine("X: " + xPos + ", Y: " + yPos + ", DeltaX: " + deltaX + ", DeltaY: " + deltaY);
+                Movement(theSprite);
+                theSprite.Invoke( = new Point(xPos, yPos);
 
                 Thread.Sleep(10);
 
             }
         }
-        */
+        
     }
 }

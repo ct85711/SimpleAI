@@ -18,22 +18,23 @@ namespace SimpleAI
         const int WinHeight = 410;
         const int boundary = 15;
 
-        private Thread movement;
+        private Thread movement = null;
 
         private Sprite sprite1;
         private Sprite sprite2;
 
         //define the delegate that we are using
-        //public delegate void SetImgPos();
-        //public SetImgPos myDelegate;
-        //public Point location;
+        public delegate void SetImgPos();
+        public SetImgPos myDelegate;
+        public Point location;
+        private PictureBox theSprite;
 
         //update the position
-        /*public void SetPosition()
+        public void SetPosition(Point location)
         {
-            Box.Location = location;
+            theSprite.Location = location;
         }
-        */
+        
 
         public Form1()
         {
@@ -53,23 +54,28 @@ namespace SimpleAI
         {
             btnStop.Enabled = true;
 
-            //Start the thread controlling the PictureBox movement
-            //Box.Location = new Point(xPos, yPos);
-            //movement = new Thread(StartMoving);
-            // movement.Start();
+            Random rnd = new Random();
 
-            sprite1 = new Sprite(this, WinHeight, WinWidth, boundary, Color.Red);
+            theSprite = new PictureBox();
+            theSprite.Width = 20;
+            theSprite.Height = 20;
+            theSprite.BackColor = Color.Red;
+            this.Controls.Add(theSprite);
+            theSprite.Visible = true;
+            theSprite.Location = new Point(rnd.Next(50, 300), rnd.Next(50, 300));
 
-            this.Refresh();
+            sprite1 = new Sprite(WinHeight, WinWidth, boundary);
+
+            movement = new Thread(sprite1.StartMoving);
+            movement.Start(theSprite);
+
+
         }
-
-        //This method is where we cause the PictureBox to bounce around on the screen
         
-
         //This method, we stop the movement thread from going around
         private void btnStop_Click(object sender, EventArgs e)
         {
-            //movement.Abort();
+            movement.Abort();
         }
     }
 }
