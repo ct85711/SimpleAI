@@ -28,20 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Box = new System.Windows.Forms.PictureBox();
             this.btnStart = new System.Windows.Forms.Button();
             this.btnStop = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.Box)).BeginInit();
             this.SuspendLayout();
-            // 
-            // Box
-            // 
-            this.Box.BackColor = System.Drawing.Color.Red;
-            this.Box.Location = new System.Drawing.Point(647, 59);
-            this.Box.Name = "Box";
-            this.Box.Size = new System.Drawing.Size(20, 20);
-            this.Box.TabIndex = 0;
-            this.Box.TabStop = false;
             // 
             // btnStart
             // 
@@ -71,18 +60,14 @@
             this.ClientSize = new System.Drawing.Size(830, 441);
             this.Controls.Add(this.btnStop);
             this.Controls.Add(this.btnStart);
-            this.Controls.Add(this.Box);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.Box)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox Box;
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Button btnStop;
     }
