@@ -30,6 +30,37 @@ namespace SimpleAI
             theSprite = sprite;
             xPos = theSprite.Location.X;
             yPos = theSprite.Location.Y;
+
+            //Pick direction the box will go in
+            PickDirection();
+        }
+
+        private void PickDirection()
+        {
+            Random rnd = new Random(DateTime.Now.Millisecond);
+            int number = rnd.Next(1, 4);
+
+            switch (number)
+            {
+                case 1:
+                    deltaX = 1;
+                    deltaY = -1;
+                    break;
+                case 2:
+                    deltaX = -1;
+                    deltaY = 1;
+                    break;
+                case 3:
+                    deltaX = -1;
+                    deltaY = -1;
+                    break;
+                case 4:
+                    deltaX = 1;
+                    deltaY = 1;
+                    break;
+                default:
+                    break;
+            }
         }
 
        private void Movement(PictureBox theSprite)
