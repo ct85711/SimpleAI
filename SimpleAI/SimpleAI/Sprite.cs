@@ -20,6 +20,7 @@ namespace SimpleAI
         private int WinHeight;
         private int WinWidth;
         private int theBoundary;
+        private PictureBox theSprite;
 
         public Sprite(int height, int width, int boundary)
         {
@@ -45,14 +46,29 @@ namespace SimpleAI
             xPos += deltaX;
             yPos += deltaY;
         }
-        
+        /*So evidently, the PictureBox control isn't actually created until it is added to the Form.
+         * So even though this thread creates an PictureBox object and only needs to use the Control, it
+         * still doesn't truely create the Control portion. :(
+         */
+
+
         public void StartMoving(object aSprite)
         {
-            PictureBox theSprite = (PictureBox)aSprite;
+            Random rnd = new Random();
+
+            theSprite = new PictureBox();
+            theSprite.Width = 20;
+            theSprite.Height = 20;
+            theSprite.BackColor = Color.Red;
+            theSprite.Visible = true;
+            theSprite.Location = new Point(rnd.Next(50, 300), rnd.Next(50, 300));
+            Form1.thisForm.Invoke(new Action(() => Form1.thisForm.Controls.Add(theSprite)));
+            
+
             while (true)
             {
                 Movement(theSprite);
-                theSprite.Invoke( = new Point(xPos, yPos);
+                theSprite.Location = new Point(xPos, yPos);
 
                 Thread.Sleep(10);
 

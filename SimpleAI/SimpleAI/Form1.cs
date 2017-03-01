@@ -21,20 +21,10 @@ namespace SimpleAI
         private Thread movement = null;
 
         private Sprite sprite1;
-        private Sprite sprite2;
+        //  private Sprite sprite2;
+        public static Form thisForm;
 
-        //define the delegate that we are using
-        public delegate void SetImgPos();
-        public SetImgPos myDelegate;
-        public Point location;
-        private PictureBox theSprite;
-
-        //update the position
-        public void SetPosition(Point location)
-        {
-            theSprite.Location = location;
-        }
-        
+        public delegate void AccControlDelegate(Control aControl);
 
         public Form1()
         {
@@ -45,30 +35,17 @@ namespace SimpleAI
         {
             //define the Delegate so that we can update the PictureBox's position
             //myDelegate = new SetImgPos(SetPosition);
+            thisForm = this;
         }
-
-        
 
         //this starts the program, by creating a new thread that will bouncing the box around
         private void btnStart_Click(object sender, EventArgs e)
         {
             btnStop.Enabled = true;
-
-            Random rnd = new Random();
-
-            theSprite = new PictureBox();
-            theSprite.Width = 20;
-            theSprite.Height = 20;
-            theSprite.BackColor = Color.Red;
-            this.Controls.Add(theSprite);
-            theSprite.Visible = true;
-            theSprite.Location = new Point(rnd.Next(50, 300), rnd.Next(50, 300));
-
             sprite1 = new Sprite(WinHeight, WinWidth, boundary);
 
             movement = new Thread(sprite1.StartMoving);
-            movement.Start(theSprite);
-
+            movement.Start();
 
         }
         
