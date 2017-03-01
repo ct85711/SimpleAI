@@ -22,12 +22,14 @@ namespace SimpleAI
         private int theBoundary;
         private PictureBox theSprite;
 
-        public Sprite(int height, int width, int boundary)
+        public Sprite(int height, int width, int boundary, PictureBox sprite)
         {
             WinHeight = height;
             WinWidth = width;
             theBoundary = boundary;
-            
+            theSprite = sprite;
+            xPos = theSprite.Location.X;
+            yPos = theSprite.Location.Y;
         }
 
        private void Movement(PictureBox theSprite)
@@ -52,24 +54,15 @@ namespace SimpleAI
          */
 
 
-        public void StartMoving(object aSprite)
+        public void StartMoving()
         {
-            Random rnd = new Random();
-
-            theSprite = new PictureBox();
-            theSprite.Width = 20;
-            theSprite.Height = 20;
-            theSprite.BackColor = Color.Red;
-            theSprite.Visible = true;
-            theSprite.Location = new Point(rnd.Next(50, 300), rnd.Next(50, 300));
-            Form1.thisForm.Invoke(new Action(() => Form1.thisForm.Controls.Add(theSprite)));
             
-
+            //Form1.thisForm.Invoke(new Action(() => Form1.thisForm.Controls.Add(theSprite)));
             while (true)
             {
                 Movement(theSprite);
-                theSprite.Location = new Point(xPos, yPos);
-
+                theSprite.Invoke(new Action(() => theSprite.Location = new Point(xPos, yPos)));
+                //theSprite.Location = new Point(xPos, yPos);
                 Thread.Sleep(10);
 
             }
