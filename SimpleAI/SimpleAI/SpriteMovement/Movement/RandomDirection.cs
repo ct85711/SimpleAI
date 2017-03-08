@@ -10,6 +10,11 @@ namespace SimpleAI.SpriteMovement.Movement
 {
     class RandomDirection : StraightMovement
     {
+        //TODO: make the delayAmount configurable, so we can have a different amount of delay than a hard coded 200
+
+        //Note: Having a delay amount too small causes it to pick a new direction too often
+        private int directionDelayAmount = 200;
+        private int delayCounter = 0;
         //Constructor
         public RandomDirection(int height, int width, int boundary, int dX, int dY) : base(height, width, boundary, dX, dY)
         { }
@@ -44,6 +49,11 @@ namespace SimpleAI.SpriteMovement.Movement
 
         public override Point movement(Point location)
         {
+            if (++delayCounter == directionDelayAmount)
+            {
+                delayCounter = 0;
+                PickDirection();
+            }
             return base.movement(location);
         }
     }

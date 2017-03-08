@@ -40,7 +40,7 @@ namespace SimpleAI
         //this starts the program, by creating a new thread that will bouncing the box around
         private void btnStart_Click(object sender, EventArgs e)
         {
-            Random rnd = new Random((int)DateTime.Now.Ticks);
+            Random rnd = new Random(DateTime.Now.Millisecond);
 
             //Create the first sprite object
             PictureBox theSprite = new PictureBox();
@@ -73,7 +73,7 @@ namespace SimpleAI
             //this should create a new sprite in a new random location
             //afterwards start it moving
             theSprite2.Location = new Point(rnd.Next(50, 300), rnd.Next(50, 300));
-            sprite2 = new Sprite(WinHeight, WinWidth, boundary, theSprite2);
+            sprite2 = new Sprite(WinHeight, WinWidth, boundary, theSprite2,MovementTypes.Random);
             movement2 = new Thread(sprite2.StartMoving);
             movement2.Start();
 
