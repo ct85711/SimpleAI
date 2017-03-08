@@ -9,28 +9,20 @@ using System.Threading.Tasks;
  * This class is an abstraction of the various movement options that the sprite can move into.
  */
 
-namespace SimpleAI.SpriteMovement
+namespace SimpleAI.SpriteMovement.Movement
 {
-    abstract class Movement : iSpriteMovement
+    abstract class SpriteMovement : iSpriteMovement
     {
         //Establishing some basic information necessary to figure out the direction to go into
-        private int deltaX;
-        private int deltaY;
+        protected int deltaX;
+        protected int deltaY;
 
-        private int WinHeight;
-        private int WinWidth;
+        protected int WinHeight;
+        protected int WinWidth;
+        protected int theBoundary;
 
-        //constructors
-        public Movement(int height, int width)
-        {
-            deltaX = 1;
-            deltaY = 1;
-
-            WinHeight = height;
-            WinWidth = width;
-        }
-
-        public Movement(int height, int width, int dX, int dY)
+        //constructor
+        protected SpriteMovement(int height, int width, int boundary, int dX, int dY)
         {
             WinHeight = height;
             WinWidth = width;

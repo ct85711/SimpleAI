@@ -70,10 +70,11 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sprite.cs" />
-    <Compile Include="SpriteMovement\Movement.cs" />
-    <Compile Include="SpriteMovement\RandomDirection.cs" />
+    <Compile Include="SpriteMovement\MovementFactory.cs" />
+    <Compile Include="SpriteMovement\Movement\SpriteMovement.cs" />
+    <Compile Include="SpriteMovement\Movement\RandomDirection.cs" />
     <Compile Include="SpriteMovement\iSpriteMovement.cs" />
-    <Compile Include="SpriteMovement\StraightMovement.cs" />
+    <Compile Include="SpriteMovement\Movement\StraightMovement.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

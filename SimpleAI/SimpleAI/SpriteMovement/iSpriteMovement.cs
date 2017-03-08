@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace SimpleAI.SpriteMovement
 {
+    //This interface defines the movement method that is used to move the sprite around the screen
     interface iSpriteMovement
     {
         Point movement(Point location);
