@@ -23,7 +23,7 @@ namespace SimpleAI.SpriteMovement
         private int theBoundary;
 
         //constructors
-        protected MovementFactory(int height, int width)
+        public MovementFactory(int height, int width)
         {
             deltaX = 1;
             deltaY = 1;
@@ -32,8 +32,7 @@ namespace SimpleAI.SpriteMovement
             WinHeight = height;
             WinWidth = width;
         }
-
-        protected MovementFactory(int height, int width, int boundary, int dX, int dY)
+        public MovementFactory(int height, int width, int boundary, int dX, int dY)
         {
             WinHeight = height;
             WinWidth = width;

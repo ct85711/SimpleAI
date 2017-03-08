@@ -12,46 +12,29 @@ namespace SimpleAI
 {
     class Sprite
     {
-        public int xPos = 20;
-        public int yPos = 20;
 
-        private int theBoundary;
         private PictureBox theSprite;
-        private iSpriteMovement SpriteMovement;
+        private iSpriteMovement theMovement;
 
         public Sprite(int height, int width, int boundary, PictureBox sprite)
         {
-            WinHeight = height;
-            WinWidth = width;
-            theBoundary = boundary;
+            MovementFactory factory = new MovementFactory(height, width, boundary, 1, 1);
+            theMovement = factory.ChooseMovement(MovementTypes.Straight);
             theSprite = sprite;
-            xPos = theSprite.Location.X;
-            yPos = theSprite.Location.Y;
         }
-
-       private void Movement(PictureBox theSprite)
-        {
-            
-        }
-        /*So evidently, the PictureBox control isn't actually created until it is added to the Form.
-         * So even though this thread creates an PictureBox object and only needs to use the Control, it
-         * still doesn't truely create the Control portion. :(
-         */
-
 
         public void StartMoving()
         {
-            
-            //Form1.thisForm.Invoke(new Action(() => Form1.thisForm.Controls.Add(theSprite)));
+            Point newPosition = theSprite.Location;
+
             while (true)
             {
-                Movement(theSprite);
-                theSprite.Invoke(new Action(() => theSprite.Location = new Point(xPos, yPos)));
-                //theSprite.Location = new Point(xPos, yPos);
+                newPosition = theMovement.movement(newPosition);
+                theSprite.Invoke(new Action(() => theSprite.Location = newPosition));
                 Thread.Sleep(10);
 
             }
         }
-        
+
     }
 }
