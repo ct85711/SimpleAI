@@ -13,7 +13,7 @@ namespace SimpleAI
     class Sprite
     {
 
-        private PictureBox theSprite;
+        public PictureBox theSprite;
         private iSpriteMovement theMovement;
 
         public Sprite(int height, int width, int boundary, PictureBox sprite)

@@ -83,7 +83,9 @@ namespace SimpleAI
         private void btnStop_Click(object sender, EventArgs e)
         {
             movement.Abort();
+            sprite1.theSprite.Visible = false;
             movement2.Abort();
+            sprite2.theSprite.Visible = false;
         }
     }
 }
