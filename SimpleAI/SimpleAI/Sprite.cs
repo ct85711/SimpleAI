@@ -19,7 +19,14 @@ namespace SimpleAI
         public Sprite(int height, int width, int boundary, PictureBox sprite)
         {
             MovementFactory factory = new MovementFactory(height, width, boundary, 1, 1);
-            theMovement = factory.ChooseMovement(MovementTypes.Straight);
+            theMovement = factory.ChooseMovement();
+            theSprite = sprite;
+        }
+        public Sprite(int height, int width, int boundary, PictureBox sprite, MovementTypes moveType)
+        {
+            MovementFactory factory = new MovementFactory(height, width, boundary, 1, 1);
+            factory.movementType = moveType;
+            theMovement = factory.ChooseMovement();
             theSprite = sprite;
         }
 
